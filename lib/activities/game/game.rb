@@ -1,9 +1,9 @@
 require_relative '../../framework/activity'
 
-class MenuActivity < Activity
+class GameActivity < Activity
 
   def update
-    puts "update menu"
+    puts "update game"
   end
 
 end
