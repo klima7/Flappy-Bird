@@ -1,4 +1,4 @@
-require_relative 'menu'
+require_relative 'activities/menu/menu'
 require_relative 'framework/window'
 
 window = Window.new(MenuActivity.new)

@@ -1,4 +1,4 @@
-require_relative 'framework/activity'
+require_relative '../../framework/activity'
 
 class MenuActivity < Activity
 
