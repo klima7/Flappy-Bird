@@ -2,7 +2,7 @@ require_relative '../../framework/activity'
 
 class FinishActivity < Activity
 
-  def update
+  def update(elapsed_time)
     puts "update finish"
   end
 

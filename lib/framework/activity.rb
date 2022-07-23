@@ -2,9 +2,6 @@ class Activity
 
   attr_accessor :window
 
-  def initialize
-  end
-
   def update
   end
 

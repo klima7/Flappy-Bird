@@ -2,7 +2,11 @@ require_relative '../../framework/activity'
 
 class GameActivity < Activity
 
-  def update
+  def draw
+    puts "draw game"
+  end
+
+  def update(elapsed_time)
     puts "update game"
   end
 
