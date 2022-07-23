@@ -7,7 +7,7 @@ class GameActivity < Activity
   end
 
   def update(elapsed_time)
-    puts "update game"
+    puts "update game #{elapsed_time}"
   end
 
 end

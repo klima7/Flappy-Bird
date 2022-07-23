@@ -24,7 +24,7 @@ class Window < Gosu::Window
 
   def update
     this_update_time = current_time_ms
-    elapsed_time =@last_update_time - this_update_time
+    elapsed_time = this_update_time - @last_update_time
     @last_update_time = this_update_time
     @activity.update elapsed_time
   end
