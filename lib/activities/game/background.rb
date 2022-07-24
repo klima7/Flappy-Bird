@@ -6,11 +6,13 @@ require_relative 'clouds'
 
 class Background
   LAYER1_SPEED = 2.0
+  LAYER2_SPEED = 3.0
 
   @layer1_image = Gosu::Image.new('resources/images/layer1.png')
+  @layer2_image = Gosu::Image.new('resources/images/layer2.png')
 
   class << self
-    attr_reader :layer1_image
+    attr_reader :layer1_image, :layer2_image
   end
 
   def initialize(map)
@@ -20,6 +22,7 @@ class Background
 
   def draw
     fill_screen(Gosu::Color::WHITE)
+    draw_layer(self.class.layer2_image, LAYER2_SPEED)
     draw_layer(self.class.layer1_image, LAYER1_SPEED)
     @clouds.draw
   end
