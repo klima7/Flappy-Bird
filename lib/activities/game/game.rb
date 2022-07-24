@@ -1,13 +1,18 @@
 require_relative '../../framework/activity'
+require_relative 'map'
 
 class GameActivity < Activity
 
+  def initialize
+    @map = Map.new
+  end
+
   def draw
-    puts "draw game"
+    @map.draw
   end
 
   def update(elapsed_time)
-    puts "update game #{elapsed_time}"
+    @map.draw
   end
 
 end
