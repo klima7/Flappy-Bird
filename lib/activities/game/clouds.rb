@@ -2,10 +2,16 @@ require_relative '../../framework/window'
 require_relative 'cloud'
 
 class Clouds
-  DISTANCE = 500
+  DISTANCE = 70
 
   def initialize
     @clouds = []
+
+    pos = 0
+    while pos < Window::WIDTH
+      add_cloud(pos)
+      pos += Cloud::WIDTH + DISTANCE
+    end
   end
 
   def draw
@@ -18,8 +24,8 @@ class Clouds
     @clouds.delete_if { |cloud| should_remove_cloud?(cloud) }
   end
 
-  def add_cloud
-    cloud = Cloud.new(Window::WIDTH, 0)
+  def add_cloud(x_pos = Window::WIDTH)
+    cloud = Cloud.new(x_pos, 0)
     @clouds << cloud
   end
 
@@ -28,7 +34,7 @@ class Clouds
       true
     else
       last_cloud = @clouds[-1]
-      distance = Window::WIDTH - last_cloud.pos_x + Cloud::WIDTH
+      distance = Window::WIDTH - (last_cloud.pos_x + Cloud::WIDTH)
       distance > DISTANCE
     end
   end
