@@ -18,6 +18,5 @@ class Map
   def update(elapsed_time)
     @background.update(elapsed_time)
     @shift += elapsed_time * 300
-    puts @shift
   end
 end
