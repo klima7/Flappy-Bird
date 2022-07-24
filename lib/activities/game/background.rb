@@ -29,7 +29,7 @@ class Background
   end
 
   def draw_layer(image, speed)
-    x1 = (-@map.shift / speed) % Window::WIDTH
+    x1 = (-@map.shift / speed).to_i % Window::WIDTH
     x2 = x1 - Window::WIDTH
     image.draw(x1, 0)
     image.draw(x2, 0)
