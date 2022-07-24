@@ -7,6 +7,7 @@ class Cloud
   LINEAR_SPEED = 200
   ANGLE_SPEED = 1
   AMPLITUDE = 50
+  TILT_ANGLE = 10
 
   attr_reader :pos_x, :pos_y
 
@@ -25,7 +26,8 @@ class Cloud
 
   def draw
     y_shift = Math.sin(@phase) * AMPLITUDE
-    @image.draw(@pos_x, @pos_y + y_shift)
+    angle_deg = Math.sin(@phase) * TILT_ANGLE
+    @image.draw_rot(@pos_x + WIDTH/2, @pos_y + HEIGHT/2 + y_shift, 0,angle_deg)
   end
 
   def update(elapsed_time)
