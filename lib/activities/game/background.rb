@@ -1,8 +1,8 @@
 require 'gosu'
 
 class Background
-  def initialize
-    super
+  def initialize(map)
+    @map = map
   end
 
   def draw

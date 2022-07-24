@@ -4,8 +4,11 @@ require_relative 'background'
 
 
 class Map
+  attr_reader :shift
+
   def initialize
-    @background = Background.new
+    @background = Background.new(self)
+    @shift = 0
   end
 
   def draw
@@ -14,5 +17,7 @@ class Map
 
   def update(elapsed_time)
     @background.update(elapsed_time)
+    @shift += elapsed_time * 300
+    puts @shift
   end
 end

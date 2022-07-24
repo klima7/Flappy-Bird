@@ -12,7 +12,7 @@ class GameActivity < Activity
   end
 
   def update(elapsed_time)
-    @map.draw
+    @map.update elapsed_time
   end
 
 end

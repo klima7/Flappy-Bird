@@ -14,7 +14,7 @@ class Window < Gosu::Window
     activity.window = self
     @activity = activity
 
-    @last_update_time = current_time_ms
+    @last_update_time = Time.now.to_f
   end
 
   def activity=(activity)
@@ -23,7 +23,7 @@ class Window < Gosu::Window
   end
 
   def update
-    this_update_time = current_time_ms
+    this_update_time = Time.now.to_f
     elapsed_time = this_update_time - @last_update_time
     @last_update_time = this_update_time
     @activity.update elapsed_time
@@ -35,12 +35,6 @@ class Window < Gosu::Window
 
   def close
     @activity.close
-  end
-
-  private
-
-  def current_time_ms
-    (Time.now.to_f * 1000).to_i
   end
 
 end
