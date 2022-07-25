@@ -18,7 +18,7 @@ class GameActivity < Activity
   end
 
   def button_down(id)
-    @map.flap if id == Gosu::KB_SPACE
+    @map.flap if [Gosu::KB_SPACE, Gosu::MS_LEFT].include?(id)
   end
 
 end
