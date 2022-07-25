@@ -5,7 +5,7 @@ class Window < Gosu::Window
   WIDTH = 800
   HEIGHT = 600
   CAPTION = 'Flappy Bird'
-  FPS = 60
+  FPS = 200
 
   def initialize(activity)
     super WIDTH, HEIGHT, { :update_interval => 1000 / FPS }
@@ -27,6 +27,7 @@ class Window < Gosu::Window
     elapsed_time = this_update_time - @last_update_time
     @last_update_time = this_update_time
     @activity.update elapsed_time
+    puts Gosu.fps
   end
 
   def draw
