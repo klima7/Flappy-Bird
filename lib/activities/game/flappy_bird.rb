@@ -4,7 +4,8 @@ class FlappyBird
   WIDTH = 87
   HEIGHT = 44
 
-  GRAVITY = 5
+  GRAVITY_ACCELERATION = 200
+  FLAP_VELOCITY = 10
 
   @image = Gosu::Image.new('resources/images/flappy_bird.png')
 
@@ -17,6 +18,7 @@ class FlappyBird
 
     @pos_x = pos_x
     @pos_y = pos_y
+    @velocity = 0
   end
 
   def draw
@@ -25,5 +27,11 @@ class FlappyBird
   end
 
   def update(elapsed_time)
+    @pos_y += @velocity * elapsed_time
+    @velocity += GRAVITY_ACCELERATION * elapsed_time
+  end
+
+  def flap
+    @velocity = -FLAP_VELOCITY
   end
 end
