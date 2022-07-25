@@ -27,7 +27,6 @@ class Window < Gosu::Window
     elapsed_time = this_update_time - @last_update_time
     @last_update_time = this_update_time
     @activity.update elapsed_time
-    puts Gosu.fps
   end
 
   def draw
@@ -36,6 +35,14 @@ class Window < Gosu::Window
 
   def close
     @activity.close
+  end
+
+  def button_down(id)
+    @activity.button_down(id)
+  end
+
+  def button_up(id)
+    @activity.button_up(id)
   end
 
 end

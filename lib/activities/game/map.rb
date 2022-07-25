@@ -22,4 +22,8 @@ class Map
     @flappy_bird.update(elapsed_time)
     @shift += elapsed_time * 300
   end
+
+  def flap
+    @flappy_bird.flap
+  end
 end

@@ -4,8 +4,8 @@ class FlappyBird
   WIDTH = 87
   HEIGHT = 44
 
-  GRAVITY_ACCELERATION = 200
-  FLAP_VELOCITY = 10
+  GRAVITY_ACCELERATION = 400
+  FLAP_VELOCITY = 250
 
   @image = Gosu::Image.new('resources/images/flappy_bird.png')
 
