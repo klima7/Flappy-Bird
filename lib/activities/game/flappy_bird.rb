@@ -6,6 +6,7 @@ class FlappyBird
 
   GRAVITY_ACCELERATION = 400
   FLAP_VELOCITY = 250
+  MAX_VELOCITY = 600
 
   @image = Gosu::Image.new('resources/images/flappy_bird.png')
 
@@ -22,13 +23,13 @@ class FlappyBird
   end
 
   def draw
-    angle_deg = 0
+    angle_deg = -20
     self.class.image.draw_rot(@pos_x + WIDTH/2, @pos_y + HEIGHT/2, 0, angle_deg)
   end
 
   def update(elapsed_time)
     @pos_y += @velocity * elapsed_time
-    @velocity += GRAVITY_ACCELERATION * elapsed_time
+    @velocity = [@velocity + GRAVITY_ACCELERATION * elapsed_time, MAX_VELOCITY].min
   end
 
   def flap
