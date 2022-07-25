@@ -26,6 +26,9 @@ class Background
     self.class.layer4_image.draw(0, 0)
     draw_layer(self.class.layer3_image, LAYER3_SPEED)
     draw_layer(self.class.layer2_image, LAYER2_SPEED)
+  end
+
+  def draw_trees
     draw_layer(self.class.layer1_image, LAYER1_SPEED)
   end
 

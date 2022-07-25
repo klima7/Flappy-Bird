@@ -18,6 +18,7 @@ class Map
     @background.draw
     @flappy_bird.draw
     @clouds.draw
+    @background.draw_trees
   end
 
   def update(elapsed_time)
