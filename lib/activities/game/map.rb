@@ -28,7 +28,9 @@ class Map
     @clouds.draw
     @trees.draw
 
-    @obstacles.each(&:draw)
+    Gosu.translate(-@shift, 0) do
+      @obstacles.each(&:draw)
+    end
   end
 
   def update(elapsed_time)

@@ -27,7 +27,7 @@ class Cloud
   def draw
     y_shift = Math.sin(@phase) * AMPLITUDE
     angle_deg = Math.sin(@phase) * TILT_ANGLE
-    @image.draw_rot(@pos_x + WIDTH/2, @pos_y + HEIGHT/2 + y_shift, 0,angle_deg)
+    @image.draw_rot(@pos_x + WIDTH/2, @pos_y + HEIGHT/2 + y_shift, 200, angle_deg)
   end
 
   def update(elapsed_time)

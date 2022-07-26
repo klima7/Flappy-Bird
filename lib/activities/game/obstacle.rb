@@ -16,7 +16,7 @@ class Obstacle
 
   def draw
     draw_x = @pos_x-TRUNK_WIDTH/2
-    @image.draw(draw_x, 0)
+    @image.draw(draw_x, 0, 0)
   end
 
   def update(elapsed_time)
