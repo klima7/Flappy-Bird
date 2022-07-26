@@ -26,6 +26,7 @@ class Map
   def update(elapsed_time)
     @clouds.update(elapsed_time)
     @flappy_bird.update(elapsed_time)
+    @trees.update(elapsed_time)
     @shift += elapsed_time * 300
   end
 
