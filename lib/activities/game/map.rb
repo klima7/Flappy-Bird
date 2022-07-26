@@ -1,15 +1,17 @@
 require 'gosu'
 
-require_relative 'background'
+require_relative 'landscape'
 require_relative 'flappy_bird'
 require_relative 'clouds'
+require_relative 'trees'
 
 class Map
   attr_reader :shift
 
   def initialize
-    @background = Background.new(self)
+    @background = Landscape.new(self)
     @clouds = Clouds.new
+    @trees = Trees.new(self)
     @flappy_bird = FlappyBird.new(self, 100, 200)
     @shift = 0
   end
@@ -18,7 +20,7 @@ class Map
     @background.draw
     @flappy_bird.draw
     @clouds.draw
-    @background.draw_trees
+    @trees.draw
   end
 
   def update(elapsed_time)
