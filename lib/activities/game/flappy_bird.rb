@@ -4,14 +4,17 @@ class FlappyBird
   WIDTH = 87
   HEIGHT = 44
 
-  GRAVITY_ACCELERATION = 500
+  GRAVITY_ACCELERATION = 700
   FLAP_VELOCITY = -300
-  MAX_VELOCITY = 500
+  MAX_FALL_VELOCITY = 500
+  FORWARD_VELOCITY = 300
 
   FLAP_ANGLE = -20
   FALL_ANGLE = 25
 
   @image = Gosu::Image.new('resources/images/flappy_bird.png')
+
+  attr_reader :pos_x, :pos_y
 
   class << self
     attr_reader :image
@@ -30,8 +33,9 @@ class FlappyBird
   end
 
   def update(elapsed_time)
+    @pos_x += elapsed_time * FORWARD_VELOCITY
     @pos_y += @velocity * elapsed_time
-    @velocity = [@velocity + GRAVITY_ACCELERATION * elapsed_time, MAX_VELOCITY].min
+    @velocity = [@velocity + GRAVITY_ACCELERATION * elapsed_time, MAX_FALL_VELOCITY].min
   end
 
   def flap
@@ -42,7 +46,7 @@ class FlappyBird
     if @velocity < 0
       @velocity * FLAP_ANGLE / FLAP_VELOCITY
     else
-      @velocity * FALL_ANGLE / MAX_VELOCITY
+      @velocity * FALL_ANGLE / MAX_FALL_VELOCITY
     end
   end
 end

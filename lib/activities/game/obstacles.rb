@@ -3,18 +3,22 @@ require 'gosu'
 require_relative 'obstacle'
 
 class Obstacles
+  RUNUP_DISTANCE = 1600
+
   def initialize(map)
     @map = map
     @obstacles = []
 
-    @obstacles << Obstacle.new(self, 300, 300)
-    @obstacles << Obstacle.new(self, 500, 100)
-    @obstacles << Obstacle.new(self, 700, 500)
+    for i in 1..100 do
+      @obstacles << Obstacle.new(self, 600 + i * 400, rand(100..500))
+    end
   end
 
   def draw
-    Gosu.translate(-@map.shift, 0) do
-      @obstacles.each(&:draw)
-    end
+    @obstacles.each(&:draw)
+  end
+
+  def update
+
   end
 end
