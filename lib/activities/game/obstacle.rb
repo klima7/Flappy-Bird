@@ -24,6 +24,10 @@ class Obstacle
   def update(elapsed_time)
   end
 
+  def behind_left_edge?
+    pos_x - @map.shift < -TRUNK_WIDTH
+  end
+
   private
 
   def create_image

@@ -6,14 +6,16 @@ class Obstacles
   include Enumerable
 
   RUNUP_DISTANCE = 1600
+  AHEAD_COUNT = 5
 
   def initialize(map)
     @map = map
     @obstacles = []
 
-    for i in 1..100 do
-      @obstacles << Obstacle.new(self, 600 + i * 400, rand(100..500))
-    end
+    obstacle = Obstacle.new(@map, RUNUP_DISTANCE, rand(@map.dm.min_hole_height..@map.dm.max_hole_height))
+    @obstacles << obstacle
+    (AHEAD_COUNT-1).times {add_obstacle }
+
   end
 
   def draw
@@ -25,6 +27,16 @@ class Obstacles
   end
 
   def update(elapsed_time)
+    start_size = @obstacles.size
+    @obstacles.delete_if(&:behind_left_edge?)
+    removed_obstacles = start_size - @obstacles.size
+    removed_obstacles.times {add_obstacle}
+  end
 
+  private
+
+  def add_obstacle
+    pos_x = @obstacles.last.pos_x + @map.dm.distance_between_obstacles
+    @obstacles << Obstacle.new(@map, pos_x, rand(@map.dm.min_hole_height..@map.dm.max_hole_height))
   end
 end

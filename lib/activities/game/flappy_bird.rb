@@ -7,7 +7,6 @@ class FlappyBird
   GRAVITY_ACCELERATION = 700
   FLAP_VELOCITY = -300
   MAX_FALL_VELOCITY = 500
-  FORWARD_VELOCITY = 300
 
   FLAP_ANGLE = -20
   FALL_ANGLE = 25
@@ -33,7 +32,7 @@ class FlappyBird
   end
 
   def update(elapsed_time)
-    @pos_x += elapsed_time * FORWARD_VELOCITY
+    @pos_x += elapsed_time * @map.dm.bird_speed
     @pos_y += @velocity * elapsed_time
     @velocity = [@velocity + GRAVITY_ACCELERATION * elapsed_time, MAX_FALL_VELOCITY].min
   end
