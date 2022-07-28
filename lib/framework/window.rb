@@ -1,4 +1,4 @@
-require "gosu"
+require 'gosu'
 
 class Window < Gosu::Window
 

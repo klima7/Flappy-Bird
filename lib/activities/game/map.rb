@@ -8,6 +8,7 @@ require_relative 'obstacles'
 
 class Map
   BIRD_DISTANCE_FROM_EDGE = 80
+  FONT = Gosu::Font.new(35)
 
   attr_reader :shift
 
@@ -26,6 +27,7 @@ class Map
     @landscape.draw
     @clouds.draw
     @trees.draw
+    draw_score
 
     Gosu.translate(-shift, 0) do
       @flappy_bird.draw
@@ -43,5 +45,15 @@ class Map
 
   def flap
     @flappy_bird.flap
+  end
+
+  def increase_score
+    @score += 1
+  end
+
+  private
+
+  def draw_score
+    FONT.draw_markup("<b>Score: #{@score}</b>", 10, 10, 1000, 1, 1, Gosu::Color::BLACK)
   end
 end
