@@ -7,6 +7,8 @@ class Obstacle
   TRUNK_WIDTH = TRUNK_IMAGE.width
   HOLE_HEIGHT = HOLE_IMAGE.height
 
+  attr_reader :pos_x
+
   def initialize(map, pos_x, hole_height)
     @map = map
     @pos_x = pos_x

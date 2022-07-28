@@ -5,12 +5,12 @@ require_relative 'flappy_bird'
 require_relative 'clouds'
 require_relative 'trees'
 require_relative 'obstacles'
+require_relative 'score_drawer'
 
 class Map
   BIRD_DISTANCE_FROM_EDGE = 80
-  FONT = Gosu::Font.new(35)
 
-  attr_reader :shift
+  attr_reader :shift, :score, :flappy_bird
 
   def initialize
     @landscape = Landscape.new(self)
@@ -18,6 +18,7 @@ class Map
     @trees = Trees.new(self)
     @flappy_bird = FlappyBird.new(self, 100, 200)
     @obstacles = Obstacles.new(self)
+    @score_drawer = ScoreDrawer.new(self)
 
     @shift = 0
     @score = 0
@@ -27,7 +28,7 @@ class Map
     @landscape.draw
     @clouds.draw
     @trees.draw
-    draw_score
+    @score_drawer.draw
 
     Gosu.translate(-shift, 0) do
       @flappy_bird.draw
@@ -38,7 +39,8 @@ class Map
   def update(elapsed_time)
     @clouds.update(elapsed_time)
     @trees.update(elapsed_time)
-    @flappy_bird.update(elapsed_time)
+    update_bird_and_score(elapsed_time)
+    @obstacles.update(elapsed_time)
 
     @shift = @flappy_bird.pos_x - BIRD_DISTANCE_FROM_EDGE
   end
@@ -47,13 +49,21 @@ class Map
     @flappy_bird.flap
   end
 
-  def increase_score
-    @score += 1
-  end
-
   private
 
-  def draw_score
-    FONT.draw_markup("<b>Score: #{@score}</b>", 10, 10, 1000, 1, 1, Gosu::Color::BLACK)
+  def update_bird_and_score(elapsed_time)
+    before_count = obstacles_behind_bird_count
+    @flappy_bird.update(elapsed_time)
+    after_count = obstacles_behind_bird_count
+    points_count = after_count - before_count
+    increase_score(points_count)
+  end
+
+  def obstacles_behind_bird_count
+    @obstacles.count {|obstacle| obstacle.pos_x < @flappy_bird.pos_x}
+  end
+
+  def increase_score(point_count)
+    @score += point_count
   end
 end

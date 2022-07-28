@@ -3,6 +3,8 @@ require 'gosu'
 require_relative 'obstacle'
 
 class Obstacles
+  include Enumerable
+
   RUNUP_DISTANCE = 1600
 
   def initialize(map)
@@ -18,7 +20,11 @@ class Obstacles
     @obstacles.each(&:draw)
   end
 
-  def update
+  def each
+    @obstacles.each {|obstacle| yield obstacle}
+  end
+
+  def update(elapsed_time)
 
   end
 end
