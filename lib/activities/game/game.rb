@@ -1,6 +1,7 @@
 require 'gosu'
 
 require_relative '../../framework/activity'
+require_relative '../menu/menu'
 require_relative 'difficulty/difficulty_manager'
 require_relative 'map'
 
@@ -21,6 +22,7 @@ class GameActivity < Activity
 
   def button_down(id)
     @map.flappy_bird.flap if [Gosu::KB_SPACE, Gosu::MS_LEFT].include?(id)
+    window.activity = MenuActivity.new if id == Gosu::KB_ESCAPE
   end
 
 end

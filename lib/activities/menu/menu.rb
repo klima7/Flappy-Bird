@@ -1,5 +1,6 @@
 require_relative '../../framework/activity'
 require_relative '../common/background'
+require_relative '../game/game'
 require_relative 'title'
 
 class MenuActivity < Activity
@@ -21,6 +22,10 @@ class MenuActivity < Activity
     @background.update(elapsed_time)
     @title.update(elapsed_time)
     @background_shift += BACKGROUND_SPEED * elapsed_time
+  end
+
+  def button_down(id)
+    window.activity = GameActivity.new
   end
 
 end
