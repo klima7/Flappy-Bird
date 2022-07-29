@@ -1,9 +1,9 @@
 require 'gosu'
 
-require_relative 'landscape'
+require_relative '../common/landscape'
 require_relative 'flappy_bird'
-require_relative 'clouds'
-require_relative 'trees'
+require_relative '../common/clouds'
+require_relative '../common/trees'
 require_relative 'obstacles'
 require_relative 'score_drawer'
 
