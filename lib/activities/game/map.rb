@@ -21,7 +21,6 @@ class Map
     @flappy_bird = FlappyBird.new(self, 100, 200)
     @obstacles = Obstacles.new(self)
     @score_drawer = ScoreDrawer.new(self)
-
     @shift = 0
     @score = 0
   end

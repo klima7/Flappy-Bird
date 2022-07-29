@@ -1,6 +1,8 @@
 require 'gosu'
 
 class FlappyBird
+  IMAGE = Gosu::Image.new('resources/images/flappy_bird.png')
+
   WIDTH = 87
   HEIGHT = 44
 
@@ -11,24 +13,17 @@ class FlappyBird
   FLAP_ANGLE = -20
   FALL_ANGLE = 25
 
-  @image = Gosu::Image.new('resources/images/flappy_bird.png')
-
   attr_reader :pos_x, :pos_y
-
-  class << self
-    attr_reader :image
-  end
 
   def initialize(map, pos_x, pos_y)
     @map = map
-
     @pos_x = pos_x
     @pos_y = pos_y
     @velocity = 0
   end
 
   def draw
-    self.class.image.draw_rot(@pos_x + WIDTH/2, @pos_y + HEIGHT/2, 0, angle)
+    IMAGE.draw_rot(@pos_x + WIDTH/2, @pos_y + HEIGHT/2, 0, angle)
   end
 
   def update(elapsed_time)

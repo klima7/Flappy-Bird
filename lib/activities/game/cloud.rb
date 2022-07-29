@@ -4,6 +4,8 @@ class Cloud
   WIDTH = 250
   HEIGHT = 125
 
+  IMAGES = Gosu::Image.load_tiles('resources/images/clouds.png', WIDTH, HEIGHT)
+
   LINEAR_SPEED = 200
   ANGLE_SPEED = 1
   AMPLITUDE = 50
@@ -11,14 +13,8 @@ class Cloud
 
   attr_reader :pos_x, :pos_y
 
-  @images = Gosu::Image.load_tiles('resources/images/clouds.png', WIDTH, HEIGHT)
-
-  class << self
-    attr_reader :images
-  end
-
   def initialize(pos_x, pos_y)
-    @image = self.class.images.sample
+    @image = IMAGES.sample
     @pos_x = pos_x
     @pos_y = pos_y
     @phase = rand * Math::PI
