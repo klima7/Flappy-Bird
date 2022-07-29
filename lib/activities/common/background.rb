@@ -4,16 +4,16 @@ require_relative 'clouds'
 
 class Background
 
-  def initialize(map)
-    @landscape = Landscape.new(map)
-    @trees = Trees.new(map)
+  def initialize
+    @landscape = Landscape.new
+    @trees = Trees.new
     @clouds = Clouds.new
   end
 
-  def draw
-    @landscape.draw
+  def draw(shift)
+    @landscape.draw(shift)
+    @trees.draw(shift)
     @clouds.draw
-    @trees.draw
   end
 
   def update(elapsed_time)

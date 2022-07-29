@@ -14,13 +14,10 @@ class Landscape
   MOUNTAINS_SPEED = 4.0
   Z_ORDER = -1000
 
-  def initialize(map)
-    @map = map
+  def draw(shift)
+    SKY_IMAGE.draw(0, 0, z=Z_ORDER)
+    draw_recurring_image(MOUNTAINS_IMAGE, shift, MOUNTAINS_SPEED, z=Z_ORDER)
+    draw_recurring_image(HILLS_IMAGE, shift, HILLS_SPEED, z=Z_ORDER)
   end
 
-  def draw
-    SKY_IMAGE.draw(0, 0, z=Z_ORDER)
-    draw_recurring_image(MOUNTAINS_IMAGE, @map, MOUNTAINS_SPEED, z=Z_ORDER)
-    draw_recurring_image(HILLS_IMAGE, @map, HILLS_SPEED, z=Z_ORDER)
-  end
 end

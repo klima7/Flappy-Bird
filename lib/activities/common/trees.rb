@@ -15,20 +15,20 @@ class Trees
   SHIFT_X = 8
   SHIFT_Y = 8
 
-  def initialize(map)
-    @map = map
+  def initialize
     @phase = 0
   end
 
-  def draw
+  def draw(shift)
     shift_x = Math.cos(@phase) * SHIFT_X
     shift_y = Math.sin(@phase) * SHIFT_Y
 
-    draw_recurring_image(BACKGROUND_IMAGE, @map, LINEAR_SPEED, -100, shift_x, SHIFT_Y-shift_y)
-    draw_recurring_image(FOREGROUND_IMAGE, @map, LINEAR_SPEED, 100, -shift_x, SHIFT_Y+shift_y)
+    draw_recurring_image(BACKGROUND_IMAGE, shift, LINEAR_SPEED, -100, shift_x, SHIFT_Y-shift_y)
+    draw_recurring_image(FOREGROUND_IMAGE, shift, LINEAR_SPEED, 100, -shift_x, SHIFT_Y+shift_y)
   end
 
   def update(elapsed_time)
     @phase = (@phase + ANGLE_SPEED * elapsed_time) % (2*Math::PI)
   end
+
 end

@@ -15,7 +15,7 @@ class Map
     difficulty_manager.bind(self)
 
     @dm = difficulty_manager
-    @background = Background.new(self)
+    @background = Background.new
     @flappy_bird = FlappyBird.new(self, 100, 200)
     @obstacles = Obstacles.new(self)
     @score_drawer = ScoreDrawer.new(self)
@@ -24,7 +24,7 @@ class Map
   end
 
   def draw
-    @background.draw
+    @background.draw(shift)
     @score_drawer.draw
 
     Gosu.translate(-shift, 0) do
