@@ -5,14 +5,14 @@ require_relative 'obstacle'
 class Obstacles
   include Enumerable
 
-  RUNUP_DISTANCE = 1600
+  RUN_UP_DISTANCE = 1600
   AHEAD_COUNT = 5
 
   def initialize(map)
     @map = map
     @obstacles = []
 
-    obstacle = Obstacle.new(@map, RUNUP_DISTANCE, rand(@map.dm.min_hole_height..@map.dm.max_hole_height))
+    obstacle = Obstacle.new(@map, RUN_UP_DISTANCE, rand(@map.dm.min_hole_height..@map.dm.max_hole_height))
     @obstacles << obstacle
     (AHEAD_COUNT-1).times {add_obstacle }
 

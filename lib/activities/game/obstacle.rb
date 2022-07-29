@@ -21,9 +21,6 @@ class Obstacle
     @image.draw(draw_x, 0, 200)
   end
 
-  def update(elapsed_time)
-  end
-
   def behind_left_edge?
     pos_x - @map.shift < -TRUNK_WIDTH
   end
