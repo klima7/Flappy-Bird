@@ -1,6 +1,6 @@
-require_relative 'landscape'
-require_relative 'trees'
-require_relative 'clouds'
+require_relative 'background/landscape'
+require_relative 'background/trees'
+require_relative 'background/clouds'
 
 class Background
 

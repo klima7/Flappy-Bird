@@ -1,4 +1,4 @@
-require_relative '../../framework/window'
+require_relative '../../../framework/window'
 require_relative 'cloud'
 
 class Clouds

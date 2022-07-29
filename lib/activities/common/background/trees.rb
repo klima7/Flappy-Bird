@@ -1,6 +1,6 @@
 require 'gosu'
 
-require_relative '../../framework/window'
+require_relative '../../../framework/window'
 require_relative 'recurring_image'
 
 class Trees
