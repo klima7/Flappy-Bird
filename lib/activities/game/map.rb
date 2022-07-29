@@ -42,7 +42,6 @@ class Map
     @trees.update(elapsed_time)
     update_bird_and_score(elapsed_time)
     @obstacles.update(elapsed_time)
-
     @shift = @flappy_bird.pos_x - BIRD_DISTANCE_FROM_EDGE
   end
 
