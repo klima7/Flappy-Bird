@@ -1,6 +1,7 @@
 require 'gosu'
 
 class Cloud
+
   WIDTH = 250
   HEIGHT = 125
 
@@ -30,4 +31,5 @@ class Cloud
     @pos_x -= LINEAR_SPEED * elapsed_time
     @phase = (@phase + ANGLE_SPEED * elapsed_time) % Math::PI
   end
+
 end

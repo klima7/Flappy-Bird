@@ -2,6 +2,7 @@ require_relative '../../framework/window'
 require_relative 'cloud'
 
 class Clouds
+
   DISTANCE = 70
 
   def initialize
@@ -42,4 +43,5 @@ class Clouds
   def should_remove_cloud?(cloud)
     cloud.pos_x + Cloud::WIDTH < 0
   end
+
 end
