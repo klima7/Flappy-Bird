@@ -1,7 +1,7 @@
 require 'gosu'
 
 require_relative '../../framework/activity'
-require_relative 'difficulty_manager'
+require_relative 'difficulty/difficulty_manager'
 require_relative 'map'
 
 class GameActivity < Activity
