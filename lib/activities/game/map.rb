@@ -1,13 +1,12 @@
 require 'gosu'
 
-require_relative '../common/landscape'
 require_relative 'flappy_bird'
-require_relative '../common/clouds'
-require_relative '../common/trees'
+require_relative '../common/background'
 require_relative 'obstacles'
 require_relative 'score_drawer'
 
 class Map
+
   BIRD_DISTANCE_FROM_EDGE = 80
 
   attr_reader :shift, :score, :flappy_bird, :dm
@@ -16,9 +15,7 @@ class Map
     difficulty_manager.bind(self)
 
     @dm = difficulty_manager
-    @landscape = Landscape.new(self)
-    @clouds = Clouds.new
-    @trees = Trees.new(self)
+    @background = Background.new(self)
     @flappy_bird = FlappyBird.new(self, 100, 200)
     @obstacles = Obstacles.new(self)
     @score_drawer = ScoreDrawer.new(self)
@@ -27,9 +24,7 @@ class Map
   end
 
   def draw
-    @landscape.draw
-    @clouds.draw
-    @trees.draw
+    @background.draw
     @score_drawer.draw
 
     Gosu.translate(-shift, 0) do
@@ -39,8 +34,7 @@ class Map
   end
 
   def update(elapsed_time)
-    @clouds.update(elapsed_time)
-    @trees.update(elapsed_time)
+    @background.update(elapsed_time)
     update_bird_and_score(elapsed_time)
     @obstacles.update(elapsed_time)
     @shift = @flappy_bird.pos_x - BIRD_DISTANCE_FROM_EDGE
@@ -59,4 +53,5 @@ class Map
   def obstacles_behind_bird_count
     @obstacles.count {|obstacle| obstacle.pos_x < @flappy_bird.pos_x}
   end
+
 end
