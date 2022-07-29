@@ -1,12 +1,14 @@
 require 'gosu'
 
 require_relative '../../framework/activity'
+require_relative 'difficulty_manager'
 require_relative 'map'
 
 class GameActivity < Activity
 
   def initialize
-    @map = Map.new
+    df = DifficultyManager.new
+    @map = Map.new(df)
   end
 
   def draw

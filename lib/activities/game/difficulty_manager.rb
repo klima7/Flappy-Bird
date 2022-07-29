@@ -1,6 +1,6 @@
 class DifficultyManager
 
-  def initialize(map)
+  def bind(map)
     @map = map
   end
 

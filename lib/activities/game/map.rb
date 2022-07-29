@@ -1,6 +1,5 @@
 require 'gosu'
 
-require_relative 'difficulty_manager'
 require_relative 'landscape'
 require_relative 'flappy_bird'
 require_relative 'clouds'
@@ -13,8 +12,10 @@ class Map
 
   attr_reader :shift, :score, :flappy_bird, :dm
 
-  def initialize
-    @dm = DifficultyManager.new(self)
+  def initialize(difficulty_manager)
+    difficulty_manager.bind(self)
+
+    @dm = difficulty_manager
     @landscape = Landscape.new(self)
     @clouds = Clouds.new
     @trees = Trees.new(self)
