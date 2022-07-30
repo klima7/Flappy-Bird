@@ -1,6 +1,7 @@
 require 'gosu'
 
 class FlappyBird
+
   IMAGE = Gosu::Image.new('resources/images/flappy_bird.png')
 
   WIDTH = 87
@@ -43,4 +44,5 @@ class FlappyBird
       @velocity * FALL_ANGLE / MAX_FALL_VELOCITY
     end
   end
+
 end
