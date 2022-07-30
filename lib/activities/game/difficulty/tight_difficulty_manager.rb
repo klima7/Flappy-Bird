@@ -1,8 +1,6 @@
-class DifficultyManager
+require_relative 'base_difficulty_manager'
 
-  def bind(map)
-    @map = map
-  end
+class TightDifficultyManager < BaseDifficultyManager
 
   def min_hole_height
     100
@@ -18,12 +16,6 @@ class DifficultyManager
 
   def bird_speed
     300
-  end
-
-  private
-
-  def score
-    @map.score
   end
 
 end
