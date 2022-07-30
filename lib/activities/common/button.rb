@@ -7,11 +7,15 @@ class Button
   DEFAULT_TEXT_COLOR = Gosu::Color::BLACK
   DEFAULT_INACTIVE_COLOR = Gosu::Color::YELLOW
   DEFAULT_ACTIVE_COLOR = Gosu::Color::RED
+  DEFAULT_BORDER_COLOR = Gosu::Color::BLACK
+
+  DEFAULT_BORDER_WIDTH = 4
   DEFAULT_FONT_HEIGHT = 30
   DEFAULT_PADDING = 10
   DEFAULT_Z_ORDER = 1000
-  DEFAULT_BORDER_COLOR = Gosu::Color::BLACK
-  DEFAULT_BORDER_WIDTH = 4
+
+  DEFAULT_AMPLITUDE = 0
+  DEFAULT_ANGLE_SPEED = 4
 
   def initialize(text, pos_x, pos_y, options={}, &callback)
     @text = text
@@ -29,7 +33,12 @@ class Button
     @padding = options.fetch(:padding, DEFAULT_PADDING)
     @border_color = options.fetch(:border_color, DEFAULT_BORDER_COLOR)
     @border_width = options.fetch(:border_width, DEFAULT_BORDER_WIDTH)
+    @phase = options.fetch(:initial_phase, rand % 2*Math::PI)
+    @angle_speed = options.fetch(:angle_speed, DEFAULT_ANGLE_SPEED)
+    @amplitude = options.fetch(:amplitude, DEFAULT_AMPLITUDE)
     @width = options[:width]
+
+    @bounce_shift = 0
 
     @inactive_image = create_button_image(@inactive_color, @text_color)
     @active_image = create_button_image(@active_color, @active_text_color)
@@ -37,13 +46,15 @@ class Button
 
   def draw
     image = @active ? @active_image : @inactive_image
-    image.draw(@pos_x, @pos_y, @z_order)
+    image.draw(@pos_x, @pos_y + @bounce_shift, @z_order)
   end
 
   def update(elapsed_time)
     mx, my = $window.mouse_x, $window.mouse_y
-    @active = mx >= @pos_x && mx <= @pos_x + width && my >= @pos_y && my <= @pos_y + height
+    @active = mx >= real_x && mx <= real_x + width && my >= @pos_y && my <= @pos_y + height
     @callback.call if @active && Gosu.button_down?(Gosu::MS_LEFT)
+    @phase += @angle_speed * elapsed_time
+    @bounce_shift = Math.sin(@phase) * @amplitude
   end
 
   def width
@@ -71,6 +82,10 @@ class Button
       Gosu.draw_rect(@border_width, @border_width, button_width-2*@border_width, button_height-2*@border_width, bg_color)
       font.draw_markup(@text, text_x, text_y, 0, 1, 1, text_color)
     end
+  end
+
+  def real_x
+    @pos_x + @bounce_shift
   end
 
 end

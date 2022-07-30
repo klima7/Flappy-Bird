@@ -7,15 +7,32 @@ require_relative 'title'
 class MenuActivity < Activity
 
   BACKGROUND_SPEED = 300
+  BUTTONS_AMPLITUDE = 5
 
   def initialize
     @background = Background.new
     @title = Title.new
-    @close_button = Button.new('Close', 125, 300, width: 150) { window.activity = GameActivity.new }
-    @fast_button = Button.new('Fast', 325, 300, width: 150) { window.activity = GameActivity.new }
-    @tight_button = Button.new('Tight', 525, 300, width: 150) { window.activity = GameActivity.new }
-    @exit_button = Button.new('Exit', 10, 10, width: 150, z_order: -2500, inactive_color: Gosu::Color::WHITE) { window.close }
     @background_shift = 0
+
+    @close_button = Button.new('Close', 125, 300,
+                               width: 150,
+                               amplitude: BUTTONS_AMPLITUDE,
+                               initial_phase: 0) { window.activity = GameActivity.new }
+
+    @fast_button = Button.new('Fast', 325, 300,
+                              width: 150,
+                              amplitude: BUTTONS_AMPLITUDE,
+                              initial_phase: 1) { window.activity = GameActivity.new }
+
+    @tight_button = Button.new('Tight', 525, 300,
+                               width: 150,
+                               amplitude: BUTTONS_AMPLITUDE,
+                               initial_phase: 2) { window.activity = GameActivity.new }
+
+    @exit_button = Button.new('Exit', 10, 10,
+                              width: 150,
+                              z_order: -2500,
+                              inactive_color: Gosu::Color::WHITE) { window.close }
   end
 
   def draw
