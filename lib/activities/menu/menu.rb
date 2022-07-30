@@ -11,7 +11,7 @@ class MenuActivity < Activity
   def initialize
     @background = Background.new
     @title = Title.new
-    @button = Button.new('BUTTON', 300, 400) { puts("Button clicked") }
+    @button = Button.new('START', 340, 300) { window.activity = GameActivity.new }
     @background_shift = 0
   end
 
@@ -29,7 +29,6 @@ class MenuActivity < Activity
   end
 
   def button_down(id)
-    window.activity = GameActivity.new
   end
 
 end
