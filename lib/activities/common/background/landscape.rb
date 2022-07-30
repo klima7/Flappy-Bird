@@ -12,12 +12,11 @@ class Landscape
 
   HILLS_SPEED = 3.0
   MOUNTAINS_SPEED = 4.0
-  Z_ORDER = -1000
 
   def draw(shift)
-    SKY_IMAGE.draw(0, 0, z=Z_ORDER)
-    draw_recurring_image(MOUNTAINS_IMAGE, shift, MOUNTAINS_SPEED, z=Z_ORDER)
-    draw_recurring_image(HILLS_IMAGE, shift, HILLS_SPEED, z=Z_ORDER)
+    SKY_IMAGE.draw(0, 0, z=-3000)
+    draw_recurring_image(MOUNTAINS_IMAGE, shift, MOUNTAINS_SPEED, z=-2000)
+    draw_recurring_image(HILLS_IMAGE, shift, HILLS_SPEED, z=-1000)
   end
 
 end
