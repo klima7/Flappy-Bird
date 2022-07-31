@@ -24,6 +24,7 @@ class GameActivity < Activity
 
   def button_down(id)
     @map.flappy_bird.flap if [Gosu::KB_SPACE, Gosu::MS_LEFT].include?(id)
+    @map.flappy_bird.die if [Gosu::KB_D].include?(id)
     window.activity = MenuActivity.new if id == Gosu::KB_ESCAPE
   end
 
