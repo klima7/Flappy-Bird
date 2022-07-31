@@ -11,6 +11,7 @@ require_relative 'map'
 class GameActivity < Activity
 
   def initialize(mode)
+    @mode = mode
     difficulty_manager = get_difficulty_manager(mode)
     @map = Map.new(difficulty_manager)
   end
@@ -50,7 +51,7 @@ class GameActivity < Activity
   end
 
   def go_to_finish
-    window.activity = FinishActivity.new(@map.score)
+    window.activity = FinishActivity.new(@map.score, @mode)
   end
 
 end
