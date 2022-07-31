@@ -40,6 +40,10 @@ class Map
     @shift = @flappy_bird.pos_x - BIRD_DISTANCE_FROM_EDGE
   end
 
+  def finished?
+    @flappy_bird.fallen_dead?
+  end
+
   private
 
   def update_bird_and_score(elapsed_time)

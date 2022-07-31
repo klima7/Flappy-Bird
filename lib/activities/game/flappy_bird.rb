@@ -22,6 +22,7 @@ class FlappyBird
 
   DIE_VELOCITY = -300
   DIE_ANGLE_VELOCITY = -180
+  DIE_FALL_DEPTH = 1000
 
   attr_reader :pos_x, :pos_y
 
@@ -39,8 +40,7 @@ class FlappyBird
   end
 
   def update(elapsed_time)
-    @pos_x += elapsed_time * @map.dm.bird_speed if alive?
-    @pos_x += elapsed_time * @map.dm.bird_speed / 2 unless alive?
+    @pos_x += elapsed_time * bird_speed
     @pos_y += @velocity * elapsed_time
     @velocity = [@velocity + GRAVITY_ACCELERATION * elapsed_time, MAX_FALL_VELOCITY].min
     update_angle(elapsed_time)
@@ -64,7 +64,7 @@ class FlappyBird
   end
 
   def fallen_dead?
-    dead? && pos_y + HEIGHT/2 > Window::HEIGHT
+    dead? && pos_y > Window::HEIGHT + DIE_FALL_DEPTH
   end
 
   private
@@ -75,6 +75,11 @@ class FlappyBird
 
   def z_order
     alive? ? LIFE_Z_ORDER : DEAD_Z_ORDER
+  end
+
+  def bird_speed
+    dm_speed = @map.dm.bird_speed
+    alive? ? dm_speed : dm_speed / 2
   end
 
   def update_angle(elapsed_time)

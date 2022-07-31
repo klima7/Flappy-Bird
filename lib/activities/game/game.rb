@@ -2,6 +2,7 @@ require 'gosu'
 
 require_relative '../../framework/activity'
 require_relative '../menu/menu'
+require_relative '../finish/finish'
 require_relative 'difficulty/close_difficulty_manager'
 require_relative 'difficulty/fast_difficulty_manager'
 require_relative 'difficulty/tight_difficulty_manager'
@@ -20,12 +21,13 @@ class GameActivity < Activity
 
   def update(elapsed_time)
     @map.update elapsed_time
+    go_to_finish if @map.finished?
   end
 
   def button_down(id)
     @map.flappy_bird.flap if [Gosu::KB_SPACE, Gosu::MS_LEFT].include?(id)
     @map.flappy_bird.die if [Gosu::KB_D].include?(id)
-    window.activity = MenuActivity.new if id == Gosu::KB_ESCAPE
+    go_to_menu if id == Gosu::KB_ESCAPE
   end
 
   private
@@ -41,6 +43,14 @@ class GameActivity < Activity
     else
       raise ArgumentError.new("Unknown mode: #{mode}")
     end
+  end
+
+  def go_to_menu
+    window.activity = MenuActivity.new
+  end
+
+  def go_to_finish
+    window.activity = FinishActivity.new(@map.score)
   end
 
 end
