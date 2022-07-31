@@ -1,14 +1,19 @@
+require 'gosu'
+
 require_relative '../../framework/activity'
 require_relative '../common/background'
 require_relative '../menu/menu'
 require_relative '../game/game'
 require_relative 'score_title'
+require_relative '../../framework/window'
 
 class FinishActivity < Activity
 
   BACKGROUND_SPEED = 100
   TRUNK_IMAGE = Gosu::Image.new('resources/images/trunk.png')
   BUTTONS_AMPLITUDE = 5
+  FONT_HEIGHT = 150
+  FONT = Gosu::Font.new(FONT_HEIGHT)
 
   def initialize(score, mode)
     @score = score
@@ -18,14 +23,14 @@ class FinishActivity < Activity
     @background_shift = 0
 
     @retry_button = Button.new(
-      'Retry', 225, 500,
+      'Retry', 225, 400,
       width: 150,
       amplitude: BUTTONS_AMPLITUDE,
       initial_phase: 0
     ) { go_to_game }
 
     @menu_button = Button.new(
-      'Menu', 425, 500,
+      'Menu', 425, 400,
       width: 150,
       amplitude: BUTTONS_AMPLITUDE,
       initial_phase: Math::PI
@@ -41,6 +46,7 @@ class FinishActivity < Activity
     @score_title.draw
     TRUNK_IMAGE.draw(50, 0, 1000)
     TRUNK_IMAGE.draw(650, 0, 1000)
+    draw_score
   end
 
   def update(elapsed_time)
@@ -59,6 +65,14 @@ class FinishActivity < Activity
 
   def go_to_game
     window.activity = GameActivity.new(@mode)
+  end
+
+  def draw_score
+    text = "<b>#{@score}</b>"
+    text_width = FONT.markup_width(text)
+    x_pos = (Window::WIDTH - text_width) / 2
+    y_pos = (Window::HEIGHT - FONT_HEIGHT) / 2
+    FONT.draw_markup(text, x_pos, y_pos, 1000, 1, 1, Gosu::Color.rgba(255, 201, 14, 255))
   end
 
 end
