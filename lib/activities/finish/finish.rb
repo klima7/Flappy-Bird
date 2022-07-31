@@ -2,6 +2,7 @@ require_relative '../../framework/activity'
 require_relative '../common/background'
 require_relative '../menu/menu'
 require_relative '../game/game'
+require_relative 'score_title'
 
 class FinishActivity < Activity
 
@@ -29,12 +30,15 @@ class FinishActivity < Activity
       amplitude: BUTTONS_AMPLITUDE,
       initial_phase: Math::PI
     ) { go_to_menu }
+
+    @score_title = ScoreTitle.new
   end
 
   def draw
     @background.draw(@background_shift)
     @retry_button.draw
     @menu_button.draw
+    @score_title.draw
     TRUNK_IMAGE.draw(50, 0, 1000)
     TRUNK_IMAGE.draw(650, 0, 1000)
   end
@@ -43,6 +47,7 @@ class FinishActivity < Activity
     @background.update(elapsed_time)
     @retry_button.update(elapsed_time)
     @menu_button.update(elapsed_time)
+    @score_title.update(elapsed_time)
     @background_shift += BACKGROUND_SPEED * elapsed_time
   end
 
