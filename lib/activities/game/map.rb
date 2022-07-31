@@ -46,8 +46,8 @@ class Map
     before_count = obstacles_behind_bird_count
     @flappy_bird.update(elapsed_time)
     after_count = obstacles_behind_bird_count
-    points_count = after_count - before_count
-    @score += points_count
+    count_difference = after_count - before_count
+    @score += count_difference if @flappy_bird.alive?
   end
 
   def obstacles_behind_bird_count

@@ -1,5 +1,7 @@
 require 'gosu'
 
+require_relative '../../framework/window'
+
 class FlappyBird
 
   LIFE_IMAGE = Gosu::Image.new('resources/images/flappy_bird.png')
@@ -59,6 +61,10 @@ class FlappyBird
 
   def dead?
     @dead
+  end
+
+  def fallen_dead?
+    dead? && pos_y + HEIGHT/2 > Window::HEIGHT
   end
 
   private
