@@ -12,8 +12,10 @@ class FinishActivity < Activity
   BACKGROUND_SPEED = 100
   TRUNK_IMAGE = Gosu::Image.new('resources/images/trunk.png')
   BUTTONS_AMPLITUDE = 5
-  FONT_HEIGHT = 150
+  FONT_HEIGHT = 100
   FONT = Gosu::Font.new(FONT_HEIGHT)
+  SCORE_PADDING = 20
+  SCORE_BORDER = 3
 
   def initialize(score, mode)
     @score = score
@@ -72,7 +74,9 @@ class FinishActivity < Activity
     text_width = FONT.markup_width(text)
     x_pos = (Window::WIDTH - text_width) / 2
     y_pos = (Window::HEIGHT - FONT_HEIGHT) / 2
-    FONT.draw_markup(text, x_pos, y_pos, 1000, 1, 1, Gosu::Color.rgba(255, 201, 14, 255))
+    Gosu.draw_rect(x_pos-SCORE_PADDING-SCORE_BORDER, y_pos-SCORE_BORDER, text_width+2*SCORE_PADDING+2*SCORE_BORDER, FONT_HEIGHT+2*SCORE_BORDER, Gosu::Color::BLACK)
+    Gosu.draw_rect(x_pos-SCORE_PADDING, y_pos, text_width+2*SCORE_PADDING, FONT_HEIGHT, Gosu::Color::WHITE)
+    FONT.draw_markup(text, x_pos, y_pos, 1000, 1, 1, Gosu::Color::BLACK)
   end
 
 end

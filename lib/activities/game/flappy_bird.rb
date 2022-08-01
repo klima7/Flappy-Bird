@@ -22,7 +22,7 @@ class FlappyBird
 
   DIE_VELOCITY = -300
   DIE_ANGLE_VELOCITY = -180
-  DIE_FALL_DEPTH = 1000
+  DIE_FALL_DEPTH = 400
 
   attr_reader :pos_x, :pos_y
 
