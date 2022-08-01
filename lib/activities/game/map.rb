@@ -12,6 +12,8 @@ class Map
   attr_reader :shift, :score, :flappy_bird, :dm
 
   def initialize(difficulty_manager)
+    @score = 0
+
     difficulty_manager.bind(self)
 
     @dm = difficulty_manager
@@ -20,7 +22,6 @@ class Map
     @obstacles = Obstacles.new(self)
     @score_drawer = ScoreDrawer.new(self)
     @shift = 0
-    @score = 0
   end
 
   def draw

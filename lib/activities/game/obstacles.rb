@@ -11,11 +11,10 @@ class Obstacles
   def initialize(map)
     @map = map
     @obstacles = []
+    @count = 0
 
-    obstacle = Obstacle.new(@map, RUN_UP_DISTANCE, @map.dm.hole_pos, @map.dm.hole_size)
-    @obstacles << obstacle
+    add_obstacle(RUN_UP_DISTANCE)
     (AHEAD_COUNT-1).times {add_obstacle }
-
   end
 
   def draw
@@ -35,9 +34,10 @@ class Obstacles
 
   private
 
-  def add_obstacle
-    pos_x = @obstacles.last.pos_x + @map.dm.distance_between_obstacles
-    @obstacles << Obstacle.new(@map, pos_x, @map.dm.hole_pos, @map.dm.hole_size)
+  def add_obstacle(pos_x=nil)
+    pos_x ||= @obstacles.last.pos_x + @map.dm.distance_between_obstacles(@count)
+    @obstacles << Obstacle.new(@map, pos_x, @map.dm.hole_pos(@count), @map.dm.hole_size(@count))
+    @count += 1
   end
 
 end
