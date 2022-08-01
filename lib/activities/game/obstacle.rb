@@ -28,8 +28,7 @@ class Obstacle
   end
 
   def draw
-    draw_x = @pos_x-WIDTH/2
-    @image.draw(draw_x, 0, 200)
+    @image.draw(@pos_x, 0, 200)
   end
 
   def behind_left_edge?
