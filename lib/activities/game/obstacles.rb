@@ -12,7 +12,7 @@ class Obstacles
     @map = map
     @obstacles = []
 
-    obstacle = Obstacle.new(@map, RUN_UP_DISTANCE, rand(@map.dm.min_hole_height..@map.dm.max_hole_height))
+    obstacle = Obstacle.new(@map, RUN_UP_DISTANCE, rand(@map.dm.min_hole_height..@map.dm.max_hole_height), rand(50..300))
     @obstacles << obstacle
     (AHEAD_COUNT-1).times {add_obstacle }
 
@@ -37,6 +37,6 @@ class Obstacles
 
   def add_obstacle
     pos_x = @obstacles.last.pos_x + @map.dm.distance_between_obstacles
-    @obstacles << Obstacle.new(@map, pos_x, rand(@map.dm.min_hole_height..@map.dm.max_hole_height))
+    @obstacles << Obstacle.new(@map, pos_x, rand(@map.dm.min_hole_height..@map.dm.max_hole_height), rand(50..300))
   end
 end
