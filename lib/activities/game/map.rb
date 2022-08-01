@@ -38,6 +38,7 @@ class Map
     @background.update(elapsed_time)
     update_bird_and_score(elapsed_time)
     @obstacles.update(elapsed_time)
+    @flappy_bird.die if hit? && @flappy_bird.alive?
     @shift = @flappy_bird.pos_x - BIRD_DISTANCE_FROM_EDGE
   end
 
@@ -57,6 +58,10 @@ class Map
 
   def obstacles_behind_bird_count
     @obstacles.count {|obstacle| obstacle.pos_x < @flappy_bird.pos_x}
+  end
+
+  def hit?
+    @obstacles.collide?(@flappy_bird.rect)
   end
 
 end

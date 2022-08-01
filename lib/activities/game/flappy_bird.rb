@@ -1,5 +1,6 @@
 require 'gosu'
 
+require_relative '../common/rectangle'
 require_relative '../../framework/window'
 
 class FlappyBird
@@ -12,6 +13,7 @@ class FlappyBird
 
   WIDTH = LIFE_IMAGE.width
   HEIGHT = LIFE_IMAGE.height
+  RECT_TEMPLATE = Rectangle.new(5, 5, WIDTH-10, HEIGHT-10)
 
   GRAVITY_ACCELERATION = 700
   FLAP_VELOCITY = -300
@@ -20,7 +22,7 @@ class FlappyBird
   FLAP_ANGLE = -20
   FALL_ANGLE = 25
 
-  DIE_VELOCITY = -300
+  DIE_VELOCITY = -150
   DIE_ANGLE_VELOCITY = -180
   DIE_FALL_DEPTH = 400
 
@@ -51,6 +53,7 @@ class FlappyBird
   end
 
   def die
+    return if dead?
     @velocity = DIE_VELOCITY
     @dead = true
   end
@@ -65,6 +68,10 @@ class FlappyBird
 
   def fallen_dead?
     dead? && pos_y > Window::HEIGHT + DIE_FALL_DEPTH
+  end
+
+  def rect
+    RECT_TEMPLATE.shift(@pos_x, @pos_y)
   end
 
   private

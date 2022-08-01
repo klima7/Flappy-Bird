@@ -32,6 +32,10 @@ class Obstacles
     removed_obstacles.times {add_obstacle}
   end
 
+  def collide?(rectangle)
+    @obstacles.any? {|obstacle| obstacle.collide?(rectangle) }
+  end
+
   private
 
   def add_obstacle(pos_x=nil)
