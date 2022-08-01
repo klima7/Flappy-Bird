@@ -4,11 +4,11 @@ class BaseDifficultyManager
     @map = map
   end
 
-  def min_hole_height
+  def hole_pos
     raise NotImplementedError.new
   end
 
-  def max_hole_height
+  def hole_size
     raise NotImplementedError.new
   end
 

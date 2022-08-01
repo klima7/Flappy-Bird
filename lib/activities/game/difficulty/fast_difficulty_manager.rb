@@ -2,12 +2,12 @@ require_relative 'base_difficulty_manager'
 
 class FastDifficultyManager < BaseDifficultyManager
 
-  def min_hole_height
-    100
+  def hole_pos
+    rand(100..500)
   end
 
-  def max_hole_height
-    500
+  def hole_size
+    rand(70..200)
   end
 
   def distance_between_obstacles
