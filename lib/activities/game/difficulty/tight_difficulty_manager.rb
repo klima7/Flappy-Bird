@@ -7,7 +7,11 @@ class TightDifficultyManager < BaseDifficultyManager
   end
 
   def _hole_size
-    rand(70..200)
+    if score < 20
+      400 - score * 10
+    else
+      [400 - 20*10 - (score-20)*5, 80].max
+    end
   end
 
   def _distance_between_obstacles

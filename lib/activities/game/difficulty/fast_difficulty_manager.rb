@@ -3,11 +3,11 @@ require_relative 'base_difficulty_manager'
 class FastDifficultyManager < BaseDifficultyManager
 
   def _hole_pos
-    rand(100..500)
+    rand(200..400)
   end
 
   def _hole_size
-    rand(70..200)
+    150
   end
 
   def _distance_between_obstacles
@@ -15,7 +15,13 @@ class FastDifficultyManager < BaseDifficultyManager
   end
 
   def _bird_speed
-    300
+    if score < 5
+      200 + score*20
+    elsif score < 25
+      200 + 5*20 + (score-5)*10
+    else
+      [200 + 5*20 + 15*10 + (score-25)*5 , 600].min
+    end
   end
 
 end
