@@ -13,7 +13,7 @@ class FlappyBird
 
   WIDTH = LIFE_IMAGE.width
   HEIGHT = LIFE_IMAGE.height
-  RECT_TEMPLATE = Rectangle.new(5, 5, WIDTH-10, HEIGHT-10)
+  RECT_TEMPLATE = Rectangle.new(9, 5, WIDTH-18, HEIGHT-10)
 
   GRAVITY_ACCELERATION = 700
   FLAP_VELOCITY = -300
@@ -44,6 +44,7 @@ class FlappyBird
   def update(elapsed_time)
     @pos_x += elapsed_time * bird_speed
     @pos_y += @velocity * elapsed_time
+    @pos_y = [@pos_y, 0].max
     @velocity = [@velocity + GRAVITY_ACCELERATION * elapsed_time, MAX_FALL_VELOCITY].min
     update_angle(elapsed_time)
   end
