@@ -2,6 +2,7 @@ require 'gosu'
 
 require_relative 'flappy_bird'
 require_relative '../common/background'
+require_relative '../../framework/window'
 require_relative 'obstacles'
 require_relative 'score_drawer'
 
@@ -61,7 +62,7 @@ class Map
   end
 
   def hit?
-    @obstacles.collide?(@flappy_bird.rect)
+    @obstacles.collide?(@flappy_bird.rect) || @flappy_bird.rect.bottom >= Window::HEIGHT
   end
 
 end
